@@ -65,8 +65,9 @@ int main()
     append(&start, 50);
 
     insertBeg(&start, 24);
-
+//here some display issue is there
     display(start);
 
     return 0;
+
 }
