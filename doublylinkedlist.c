@@ -128,7 +128,29 @@ void deleteFromEnd(Node** head) {
         temp->prev->next = NULL;
         free(temp);
 }
+void reverseList(Node** head) {
+    if (*head == NULL) {
+        return;
+    }
 
+    Node* temp = NULL;
+    Node* current = *head;
+
+    while (current != NULL) {
+        // Swap next and prev
+        temp = current->prev;
+        current->prev = current->next;
+        current->next = temp;
+
+        // Move to next node (which is previous before swap)
+        current = current->prev;
+    }
+
+    // Update head
+    if (temp != NULL) {
+        *head = temp->prev;
+    }
+}
 
 int main() {
     // Creating individual nodes
@@ -152,6 +174,9 @@ int main() {
     traverseForward(head);
     deleteFromEnd(&head);
     traverseForward(head);
-    
+    reverseList(&head);
+    printf("After reversing: ");
+    traverseForward(head);
       return 0;
+
 }
